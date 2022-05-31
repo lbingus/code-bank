@@ -1,0 +1,30 @@
+def fibonacci(x):   # iterative fibonacci function
+    """
+    :return:
+    Returns list of Fibonacci numbers
+    """
+    fib_num = [0, 1]
+    print(fib_num[0])
+    print(fib_num[1])
+    for i in range(0, x - 2):
+        num = fib_num[i] + fib_num[i + 1]  # Adds index i with following number
+        fib_num.append(num)
+        print(num)
+    return fib_num
+
+
+# ---------------------------------------------------------------------------------
+
+
+def fib_rec(n):   # recursive fibonacci function
+    """
+    :param n:
+    How many times to execute the code
+
+    :return:
+    Returns Fibonacci numbers
+    """
+    if n <= 2:
+        return 1
+    else:
+        return fib_rec(n - 1) + fib_rec(n - 2)
