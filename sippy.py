@@ -16,7 +16,7 @@ class cup():
 
     def drink(cup):    # allows you to drink from the cup
         cup.__volume -= 20
-        cup.__filled = (cup.__volume / 500) * 100
+        cup.__filled = round(((cup.__volume / 500) * 100), 1)
         print(f'After drinking, you have {cup.__volume} mL of {cup.__content} left. That is {cup.__filled}% of'
               f' the original amount. ')
         time.sleep(0.5)
