@@ -1,0 +1,77 @@
+import functools
+from random import randint
+import timeit
+
+
+# ---------------------------------------------------------------------------------
+
+
+def time():
+    # Zeitstempel Start
+    start = timeit.default_timer()
+    # Algorithmus (Programmausführung)...
+    jackpot()
+    stop = timeit.default_timer()
+    # Ausführzeit (Stop - Start)
+    print(f'\nAlorithmus ausgeführt in {round(stop - start, 2)} Sekunden')
+
+
+# ---------------------------------------------------------------------------------
+
+@functools.lru_cache(None)
+def jackpot():
+    gewinn = False
+    counter = 0
+    tipp = lotto_tipp()
+    lotto_ziehung = tuple()
+    while gewinn is False:
+        while tipp != lotto_ziehung:
+            lotto_ziehung = lotto()
+            counter += 1
+            print(f'Das war leider nichts :(\n'
+                  f'Vergangene Ziehungen: {counter:,d}\n'
+                  f'Gezogene Nummern: {tuple(sorted(lotto_ziehung))}\n'
+                  f'Deine Nummern: {tuple(sorted(tipp))}')
+            continue
+        else:
+            gewinn = True
+            print(f'Jackpot! Dein Tipp war identisch mit den Lottozahlen nach {counter:,d} Ziehungen.\n'
+                  f'Gezogene Nummern: {tuple(sorted(lotto_ziehung))}\n'
+                  f'Deine Nummern: {tuple(sorted(tipp))}')
+            return gewinn
+
+
+# ---------------------------------------------------------------------------------
+
+
+def lotto():
+    lotto_ziehung = set()
+    # Stay in loop until given number of numbers are in set
+    while len(lotto_ziehung) < 6:
+        # Random number btw 1 and 49 (incl. borders)
+        lotto_ziehung.add(randint(1, 49))
+    return tuple(sorted(lotto_ziehung))
+
+
+# ---------------------------------------------------------------------------------
+
+
+def lotto_tipp():
+    print('Willkommen bei der heutigen Lotto-Ziehung. Bitte wähle 6 Nummern zwischen 1 und 49 aus')
+    a = int(input('Erste Zahl: '))
+    b = int(input('Zweite Zahl: '))
+    c = int(input('Dritte Zahl: '))
+    d = int(input('Vierte Zahl: '))
+    e = int(input('Fünfte Zahl: '))
+    f = int(input('Sechste Zahl: '))
+    tipp = [a, b, c, d, e, f]
+    tipp = set(tipp)
+    print(f'Dein Lotto-Tipp ist {tuple(sorted(tipp))}')
+    return tuple(sorted(tipp))
+
+
+# ---------------------------------------------------------------------------------
+
+
+if __name__ == '__main__':
+    time()
