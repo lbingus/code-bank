@@ -496,12 +496,9 @@ def main_room_1():
         
         # left options
         elif resp.lower() == 'left':
-            time.sleep(1)
-            resp2 = input('\nThere is a wall. Do you want to touch it?'
-                    '\nY/N\n')
-            if resp2.lower == 'y':
-                time.sleep(1)
-                print('\nThe wall is cold and rough.')
+            walls()
+        
+        # invalid input
         else: 
             print(f'\n{resp} is not a valid action.')
             continue
@@ -1364,7 +1361,7 @@ I am very much aware that many things could have been better executed, however, 
 I have learned after only 4 weeks of daily Python classes. This game was cobbled together in only
 2.5 days and I'm sure it shows. It is clunky and held together with duct tape and bedtime prayers.
 However, it's something I made and I am very proud of it. I hope you enjoyed playing the game and 
-if you're having a look at the source code, I salute you even more. Have a lil kiss on zour noggin
+if you're having a look at the source code, I salute you even more. Have a lil kiss on your noggin
 and see you the next time I decide to spend too much effor on something like this <3
 
 Love,
