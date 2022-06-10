@@ -91,7 +91,7 @@ def print_user_stats_table():
 
 def class_mods(user_class):
     if user_class.isnumeric() is True:
-        print(f'"{user_class}" is an invalid character class. ')
+        print(f'\n"{user_class}" is an invalid character class.')
         exit()
     else:
         if user_class.lower() == 'barbarian':
@@ -108,7 +108,7 @@ def class_mods(user_class):
             user_stats['Strength'] = strength - 2
         else:
             time.sleep(1)
-            print(f'{user_class} does not exist. No adventures for you.')
+            print(f'\n{user_class} does not exist. No adventures for you.')
             exit()
 
 
@@ -119,7 +119,7 @@ def print_class_mod_table():
                    headers=class_modifiers_header)
 
     print('\nChoose your character class. Each character class gains 3 bonus '
-          'points to one stat and loses 2 points from another stat: ')
+          '\npoints to one stat and loses 2 points from another stat: ')
     print('-' * 27)
     print(mod_table)
     print('-' * 27)
@@ -906,11 +906,11 @@ def side_corridor_2_walking():
                          '\nDo you want to open it?'
                          '\nY/N\n')
             if resp.lower() == 'y':
-                if user_class == 'barbarian':
+                if user_class.lower() == 'barbarian':
                     weapon = 'DWARVEN AXE'
-                elif user_class == 'bard':
+                elif user_class.lower() == 'bard':
                     weapon = 'GOLDEN LUTE'
-                elif user_class == 'rogue':
+                elif user_class.lower() == 'rogue':
                     weapon = 'MYSTIC DAGGER'
                 else:
                     weapon = 'GRAND STAFF'
@@ -1254,6 +1254,7 @@ def event2():
 
 def end():
     global achievement
+    global game_runs
     
     time.sleep(1)
     print('\nCreator: lbingus')
@@ -1265,7 +1266,13 @@ def end():
     else:
         pass
     
-    sys.exit('\nTHE END')  
+    game_runs = False   # exits the main while loop
+    
+    print('\nTHE END')
+    
+    time.sleep(8)
+    
+    sys.exit()  
 
 
 # ---------------
@@ -1274,7 +1281,9 @@ def end():
 
 
 if __name__ == '__main__':
-    while 1 > 0:
+    game_runs = True
+    
+    while game_runs is True:
         print('=' * 92)
         print('VERY IMPORTANT!!'
               '\nThis game does not have a save function. If you die, you have to play the entire game again.'
@@ -1292,20 +1301,20 @@ if __name__ == '__main__':
             achievement = False    
 
             user_stats = {'HP': hp,
-                        'Strength': strength,
-                        'Intelligence': intel,
-                        'Initiative': init,
-                        'Stealth': stealth
-                        }
+                          'Strength': strength,
+                          'Intelligence': intel,
+                          'Initiative': init,
+                          'Stealth': stealth
+                          }
             print_user_stats_table()
             time.sleep(1)
 
             # choose character class prompt
             class_modifiers = {'Barbarian': ('+3 STR', '-2 INT'),
-                            'Bard': ('+3 INIT', '-2 STL'),
-                            'Rogue': ('+3 STL', '-2 INIT'),
-                            'Wizard': ('+3 INT', '-2 STR')
-                            }
+                               'Bard': ('+3 INIT', '-2 STL'),
+                               'Rogue': ('+3 STL', '-2 INIT'),
+                               'Wizard': ('+3 INT', '-2 STR')
+                               }
             print_class_mod_table()
             time.sleep(1)
 
@@ -1351,7 +1360,7 @@ if __name__ == '__main__':
             time.sleep(1)
             print('\nI said ' + '"please press <Enter>"' + ' you goldfish brain.\n\n')
             continue
-        
+
 
 """
 (C) lbingus 2022
@@ -1362,9 +1371,11 @@ I have learned after only 4 weeks of daily Python classes. This game was cobbled
 2.5 days and I'm sure it shows. It is clunky and held together with duct tape and bedtime prayers.
 However, it's something I made and I am very proud of it. I hope you enjoyed playing the game and 
 if you're having a look at the source code, I salute you even more. Have a lil kiss on your noggin
-and see you the next time I decide to spend too much effor on something like this <3
+and see you the next time I decide to spend too much effort on something like this <3
 
 Love,
 
-lbingus 
+lbingus
+
+GitHub: https://github.com/lbingus/code-bank
 """
